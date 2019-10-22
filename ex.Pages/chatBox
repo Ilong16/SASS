@@ -16,7 +16,7 @@
         url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/53d02f27-1348-4b26-a43a-06807c116bc3/token"
       });
       const chatManager = new Chatkit.ChatManager({
-        instanceLocator: "general",
+        instanceLocator: "v1:us1:53d02f27-1348-4b26-a43a-06807c116bc3",
         userId: "dmin",
         tokenProvider: tokenProvider
       });
