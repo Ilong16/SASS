@@ -1,63 +1,30 @@
-<html lang=en>
-  <head>
-    <meta charset=utf-8>
-    <title>Chatkit demo</title>
-  </head>
-  <body>
-    <ul id="message-list"></ul>
-    <form id="message-form">
-      <input type='text' id='message-text'>
-      <input type="submit">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Chat - Customer Module</title>
+<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+ 
+<div id="wrapper">
+    <div id="menu">
+        <p class="welcome">Welcome, <b></b></p>
+        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <div style="clear:both"></div>
+    </div>
+     
+    <div id="chatbox"></div>
+     
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
     </form>
-
-    <script src="https://unpkg.com/@pusher/chatkit-client@1/dist/web/chatkit.js"></script>
-    <script>
-      const tokenProvider = new Chatkit.TokenProvider({
-        url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/53d02f27-1348-4b26-a43a-06807c116bc3/token"
-      });
-      const chatManager = new Chatkit.ChatManager({
-        instanceLocator: "v1:us1:53d02f27-1348-4b26-a43a-06807c116bc3",
-        userId: "dmin",
-        tokenProvider: tokenProvider
-      });
-
-      chatManager
-        .connect()
-        .then(currentUser => {
-          currentUser.subscribeToRoomMultipart({
-            roomId: currentUser.rooms[0].id,
-            hooks: {
-              onMessage: message => {
-                const ul = document.getElementById("message-list");
-                const li = document.createElement("li");
-                li.appendChild(
-                  document.createTextNode(`${message.senderId}: ${
-                    // We know our message will have a single part with
-                    // a plain text content because we used
-                    // sendSimpleMessage. In general we'd have to check
-                    // the partType here.
-                    message.parts[0].payload.content
-                  }`)
-                );
-                ul.appendChild(li);
-              }
-            }
-          });
-
-          const form = document.getElementById("message-form");
-          form.addEventListener("submit", e => {
-            e.preventDefault();
-            const input = document.getElementById("message-text");
-            currentUser.sendSimpleMessage({
-              text: input.value,
-              roomId: currentUser.rooms[0].id
-            });
-            input.value = "";
-          });
-        })
-        .catch(error => {
-          console.error("error:", error);
-        });
-    </script>
-  </body>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript">
+// jQuery Document
+$(document).ready(function(){
+ 
+});
+</script>
+</body>
 </html>
