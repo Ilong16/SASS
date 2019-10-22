@@ -1,1 +1,10 @@
-Insert Chatbox Code here
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Chatkit demo</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/@pusher/chatkit-client@1/dist/web/chatkit.js"></script>
+    <script></script>
+  </body>
+</html>
